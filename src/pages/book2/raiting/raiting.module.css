@@ -1,0 +1,46 @@
+.wrapper {
+  margin-top: 42px;
+}
+.raitingText,
+.raitingNum {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+}
+.raitingText {
+  margin-bottom: 16px;
+  width: 350px;
+  border-bottom: 1px solid #ebebeb;
+  padding-bottom: 16px;
+}
+.raitingNum {
+  margin: 0;
+}
+.raitingBox {
+  display: flex;
+  align-items: center;
+}
+.star {
+  margin-right: 24px;
+  height: 24px;
+}
+@media (max-width: 1110px) {
+  .raitingText {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    width: 305px;
+  }
+}
+@media (max-width: 767px) {
+  .raitingText,
+  .raitingNum {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .star {
+    width: 218px;
+    height: 34px;
+  }
+}
