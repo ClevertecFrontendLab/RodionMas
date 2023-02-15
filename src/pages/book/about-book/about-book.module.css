@@ -37,6 +37,31 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+.btnBooking {
+  width: 350px;
+  height: 52px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: #a7a7a7;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  background: #f9f9fa;
+  border: 1px solid #bfc4c9;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.btnReservation {
+  width: 350px;
+  height: 52px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: #363636;
+  background: #ffffff;
+  border: 1px solid #bfc4c9;
+  border-radius: 30px;
+}
 .btn:active {
   background: linear-gradient(233.73deg, #f83600 -16.08%, #f9d423 327.37%);
 }
@@ -72,7 +97,7 @@
 .aboutBookBotMobile {
   display: none;
 }
-.swiperBox{
+.swiperBox {
   display: none;
 }
 @media (max-width: 1110px) {
@@ -89,7 +114,7 @@
     line-height: 18px;
     margin: 32px 0;
   }
-  .btn {
+  .btn, .btnBooking, .btnReservation {
     width: 306px;
   }
   .aboutBookBotMobile {
@@ -106,15 +131,15 @@
   .aboutBookBotMobile h5 {
     font-size: 16px;
   }
-  .swiper{
+  .swiper {
     flex-direction: inherit;
   }
-  .swiper .swiper-container{
+  .swiper .swiper-container {
     width: 136px;
   }
 }
 @media (max-width: 767px) {
-  .swiper{
+  .swiper {
     height: 301px;
     width: 188px;
     margin: 0 auto;
@@ -140,7 +165,7 @@
     line-height: 18px;
     margin: 8px 0 42px 0;
   }
-  .btn {
+  .btn, .btnBooking, .btnReservation {
     width: 288px;
   }
   .aboutBookBot {

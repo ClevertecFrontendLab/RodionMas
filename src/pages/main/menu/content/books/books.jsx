@@ -11,6 +11,7 @@ import { fetchIdBook } from '../../../../../store/bookslice';
 export const Books = ({ books, dispatch }) => {
   // Кнопка смены сетки
   const [activeGrid, setActiveGrid] = useState(true);
+  console.log(new Date('2023-01-24T13:31:42.192Z').getMonth());
   return (
     <section className={style.books}>
       <Search setActiveGrid={setActiveGrid} activeGrid={activeGrid} />
@@ -21,7 +22,7 @@ export const Books = ({ books, dispatch }) => {
               <div className={style.aboutBookLink} key={Math.random()} data-test-id='card'>
                 <Link
                   onClick={() => {
-                    return dispatch(fetchIdBook(book.id));
+                    dispatch(fetchIdBook(book.id));
                   }}
                   to={`/books/all/${book.id}`}
                 >
@@ -66,7 +67,7 @@ export const Books = ({ books, dispatch }) => {
                   {!book.booking && !book.delivery
                     ? 'Забронировать'
                     : book.booking !== null
-                    ? `Занята до ${book.booking.dateOrder.slice(5, -17)} ${book.booking.dateOrder.slice(8, -14)}`
+                    ? `Занята до ${book.booking.dateOrder.slice(5, -17)}.${book.booking.dateOrder.slice(8, -14)}`
                     : 'Забронирована'}
                 </button>
               </div>

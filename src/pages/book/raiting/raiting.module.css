@@ -25,6 +25,13 @@
   margin-right: 24px;
   height: 24px;
 }
+.zeroRaitingBox{
+  display: flex;
+  align-items: center;
+}
+.zeroRaitingBox p{
+  margin-left: 24px;
+}
 @media (max-width: 1110px) {
   .raitingText {
     font-weight: 600;

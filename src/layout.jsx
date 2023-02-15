@@ -49,7 +49,6 @@ export const Layout = () => {
           }
         />
         <Route
-          // было path='/book/*'
           path='/books/all/:id'
           element={
             <BookPage

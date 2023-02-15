@@ -18,7 +18,7 @@ export const AboutBook = ({ pageBookId }) => {
     return size;
   };
   const [width] = useWindowSize();
-
+  console.log(pageBookId);
   return (
     <div>
       {pageBookId !== null && (
@@ -96,8 +96,24 @@ export const AboutBook = ({ pageBookId }) => {
               <h5 className={style.author}>
                 {pageBookId.authors}, {pageBookId.issueYear}
               </h5>
-              <button type='button' className={style.btn}>
-                Забронировать
+              <button
+                type='button'
+                className={
+                  !pageBookId.booking && !pageBookId.delivery
+                    ? style.btn
+                    : pageBookId.booking !== null
+                    ? style.btnBooking
+                    : style.btnReservation
+                }
+              >
+                {!pageBookId.booking && !pageBookId.delivery
+                  ? 'Забронировать'
+                  : pageBookId.booking !== null
+                  ? `Занята до ${pageBookId.booking.dateOrder.slice(5, -17)}.${pageBookId.booking.dateOrder.slice(
+                      8,
+                      -14
+                    )}`
+                  : 'Забронирована'}
               </button>
               <div className={style.aboutBookBot}>
                 <h5>О книге</h5>
