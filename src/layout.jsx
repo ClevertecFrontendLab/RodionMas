@@ -21,7 +21,7 @@ export const Layout = () => {
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchBooks());
-    dispatch(fetchIdBook(2))
+    dispatch(fetchIdBook(2));
   }, [dispatch]);
 
   return (
@@ -52,7 +52,8 @@ export const Layout = () => {
           path='/books/all/:id'
           element={
             <BookPage
-            books={books}
+            dispatch={dispatch}
+              books={books}
               pageBookId={pageBookId}
               headerRef={headerRef}
               toggleMenuMode={toggleMenuMode}

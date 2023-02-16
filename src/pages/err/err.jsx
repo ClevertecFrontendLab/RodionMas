@@ -1,7 +1,5 @@
-import React from 'react';
 import warning from '../../assets/img/err/WarningCircle.png';
 import close from '../../assets/img/err/Icon_Action.png'
-
 import style from './err.module.css';
 import { closeErr } from '../../store/bookslice';
 

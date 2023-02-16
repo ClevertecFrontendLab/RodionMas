@@ -13,12 +13,10 @@ import style from './about-book.module.css';
 
 export const AboutBook = ({ pageBookId }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const useWindowSize = () => {
-    const [size, setSize] = useState([window.innerWidth]);
-    return size;
-  };
+  const [size, setSize] = useState([window.innerWidth]);
+  const useWindowSize = () => (size);
   const [width] = useWindowSize();
-  console.log(pageBookId);
+  // console.log(pageBookId);
   return (
     <div>
       {pageBookId !== null && (

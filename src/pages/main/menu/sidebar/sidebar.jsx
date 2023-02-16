@@ -9,12 +9,6 @@ import { filterBook } from '../../../../store/bookslice';
 export const Sidebar = ({ books, dispatch, isMenuOpen, setIsMenuOpen, headerRef, toggleMenuMode }) => {
   const [active, setActive] = useState(0);
   const [activeLink, setActiveLink] = useState(0);
-  // const [filterArr, setFilterArr] = useState([])
-  // const fn = (book) => {
-  //   const newFilter = books.filter(el => el.categories[0] === book.name)
-  //   setFilterArr(newFilter)
-  //   console.log(filterArr)
-  // }
   // ЗАкрыть меню навигации при клике вне эелемента
   const menuRef = useRef(null);
   useEffect(() => {
@@ -33,6 +27,9 @@ export const Sidebar = ({ books, dispatch, isMenuOpen, setIsMenuOpen, headerRef,
   // Повернуть стрелку, свернуть содержимое всех книг
   const [rotateArrow, setRotateArrow] = useState(true);
   // --
+  const errBooksId = useSelector(state => state.book.errorIdBook)
+  const errAllBooks = useSelector(state => state.book.error)
+  // console.log(errAllBooks)
   const categories = useSelector((state) => state.book.categories);
   return (
     <nav data-test-id='burger-navigation' ref={menuRef} className={!isMenuOpen ? style.wrapper : style.navMenuActive}>
@@ -52,22 +49,19 @@ export const Sidebar = ({ books, dispatch, isMenuOpen, setIsMenuOpen, headerRef,
         >
           Витрина книг
         </Link>
-        <img
+       { errAllBooks === '' && errBooksId === '' ? <img
           data-test-id='burger-navigation'
           className={rotateArrow ? style.arrow : style.arrowDown}
           src={arrowDown}
           alt='arrow'
-        />
+        /> : ''}
       </button>
       <ul className={style.list}>
-        {categories.map((book, i) => (
+        { errAllBooks === '' && errBooksId === '' ? categories.map((book, i) => (
           <li data-test-id='burger-books' className={rotateArrow ? style.item : style.hide} key={book.id}>
             <Link
               data-test-id='navigation-books'
               onClick={() => {
-                // fn(book)
-                // dispatch(filterBook(book.name))
-                // [...books].filter(el => (el.categories[0] === book.name))  
                 dispatch(filterBook(book.name))
                 setActive(i);
                 setActiveLink(0);
@@ -82,7 +76,7 @@ export const Sidebar = ({ books, dispatch, isMenuOpen, setIsMenuOpen, headerRef,
               <span className={style.quantity}>{book.quantity}</span>
             </Link>
           </li>
-        ))}
+        )) : ''}
       </ul>
       <button
         onClick={() => {

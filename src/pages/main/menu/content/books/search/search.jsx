@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import style from './search.module.css';
 import searchImg from '../../../../../../assets/img/Icon_Action.png';
 import X from '../../../../../../assets/img/books/X.png';
 
-export const Search = ({ activeGrid, setActiveGrid }) => {
+export const Search = ({books, activeGrid, setActiveGrid }) => {
   const [inpSearch, setInpSearch] = useState(false);
+  const loadingSearch = useSelector(state => state.book.loading)
+  const errSearch = useSelector(state => state.book.error)
   return (
     <section className={style.wrapper}>
-      <div className={style.searchMenu}>
+      {!loadingSearch && errSearch !== undefined ? <div className={style.searchMenu}>
         <div className={style.searchBlock}>
           <button onClick={() => setInpSearch(!inpSearch)} className={!inpSearch ? style.searchBtn : style.hide} type='button'>
             <img className={style.searchImg} data-test-id='button-search-open' src={searchImg} alt='search' />
@@ -68,8 +71,8 @@ export const Search = ({ activeGrid, setActiveGrid }) => {
             </svg>
           </button>
         </div>
-      </div>
-      <div className={!inpSearch ? style.gridBlock : style.hideMobile}>
+      </div> : ''}
+      {!loadingSearch && errSearch !== undefined ?  <div className={!inpSearch ? style.gridBlock : style.hideMobile}>
         <button
           data-test-id='button-menu-view-window'
           onClick={() => {
@@ -116,7 +119,7 @@ export const Search = ({ activeGrid, setActiveGrid }) => {
             />
           </svg>
         </button>
-      </div>
+      </div> : ''}
     </section>
   );
 };

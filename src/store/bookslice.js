@@ -9,7 +9,9 @@ const initialState = {
   bookId: null,
   loading: false,
   error: null,
+  errorIdBook: null,
   filterArr: [],
+  path: {},
 };
 
 export const fetchBooks = createAsyncThunk('book/fetchBooks', (_, { rejectWithValue }) => {
@@ -26,6 +28,7 @@ export const fetchBooks = createAsyncThunk('book/fetchBooks', (_, { rejectWithVa
 });
 export const fetchCategories = createAsyncThunk('book/fetchCategories', (_, { rejectWithValue }) => {
   return axios.get(`${API_URL}/api/categories`).then((response) => {
+    console.log(response)
     try {
       if (response.statusText !== 'OK') {
         throw new Error('Server Error!');
@@ -38,7 +41,6 @@ export const fetchCategories = createAsyncThunk('book/fetchCategories', (_, { re
 });
 export const fetchIdBook = createAsyncThunk('book/fetchIdBook', (id, { rejectWithValue }) => {
   return axios.get(`${API_URL}/api/books/${id}`).then((response) => {
-    console.log(response)
     try {
       if (response.statusText !== 'OK') {
         throw new Error('Server Error!');
@@ -56,6 +58,7 @@ export const bookSlice = createSlice({
   reducers: {
     closeErr(state) {
       state.error = false;
+      state.errorIdBook = false;
     },
     filterBook(state, action) {
       if (state.books.length === 0) {
@@ -69,8 +72,8 @@ export const bookSlice = createSlice({
         });
       }
     },
-    bookIdPage(state, action){
-
+    getPath(state, action){
+      // state.categories.map(el => el.name === action.payload && state.path = el.path)
     }
   },
   extraReducers: {
@@ -102,21 +105,21 @@ export const bookSlice = createSlice({
     },
     [fetchIdBook.pending]: (state) => {
       state.loading = true;
-      state.error = null;
+      state.errorIdBook = null;
     },
     [fetchIdBook.fulfilled]: (state, action) => {
       state.loading = false;
       state.bookId = action.payload;
-      state.error = '';
+      state.errorIdBook = '';
     },
     [fetchIdBook.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.errorIdBook = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { closeErr, filterBook } = bookSlice.actions;
+export const { closeErr, filterBook, getPath } = bookSlice.actions;
 
 export const bookReducer = bookSlice.reducer;

@@ -33,11 +33,30 @@
   .wrapper {
     width: 280px;
     height: 78px;
+    padding: 15px 20px;
   }
   .wrapper h4 {
     font-weight: 600;
     font-size: 14px;
     line-height: 18px;
     color: #363636;
+    width: 186px;
+    height: 54px;
+    margin-left: 15px;
+  }
+  .wrarningBlock{
+    align-items: initial;
+  }
+  .wrarningBlock img{
+    width: 18px;
+    height: 18px;
+  }
+  .btn {
+    width: 16px;  
+    height: 16px;
+  }
+  .btn img{
+    width: 16px;
+    height: 16px;
   }
 }

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import style from './books.module.css';
 import catImg from '../../../../../assets/img/books/cat.jpg';
 import ratingTrue from '../../../../../assets/img/rating.png';
@@ -8,13 +9,15 @@ import ratingFalse from '../../../../../assets/img/ratingFalse.png';
 import { Search } from './search/search';
 import { fetchIdBook } from '../../../../../store/bookslice';
 
+
 export const Books = ({ books, dispatch }) => {
   // Кнопка смены сетки
   const [activeGrid, setActiveGrid] = useState(true);
-  console.log(new Date('2023-01-24T13:31:42.192Z').getMonth());
+  const pathCategories = useSelector(state => state.book.categories)
+  // console.log(pathCategories)
   return (
     <section className={style.books}>
-      <Search setActiveGrid={setActiveGrid} activeGrid={activeGrid} />
+      <Search books={books} setActiveGrid={setActiveGrid} activeGrid={activeGrid} />
       <div>
         {activeGrid === true ? (
           <div className={style.gridBook}>
