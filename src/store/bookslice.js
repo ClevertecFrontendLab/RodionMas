@@ -12,6 +12,7 @@ const initialState = {
   errorIdBook: null,
   filterArr: [],
   path: {},
+  categoriesBookId: '',
 };
 
 export const fetchBooks = createAsyncThunk('book/fetchBooks', (_, { rejectWithValue }) => {
@@ -74,6 +75,11 @@ export const bookSlice = createSlice({
     },
     getPath(state, action){
       // state.categories.map(el => el.name === action.payload && state.path = el.path)
+    },
+    getCategoriesBookId(state, action){
+      state.categoriesBookId = action.payload
+      console.log(action.payload)
+      console.log(state.categoriesBookId)
     }
   },
   extraReducers: {
@@ -120,6 +126,6 @@ export const bookSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { closeErr, filterBook, getPath } = bookSlice.actions;
+export const { closeErr, filterBook, getPath, getCategoriesBookId } = bookSlice.actions;
 
 export const bookReducer = bookSlice.reducer;

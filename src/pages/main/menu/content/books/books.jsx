@@ -7,7 +7,7 @@ import catImg from '../../../../../assets/img/books/cat.jpg';
 import ratingTrue from '../../../../../assets/img/rating.png';
 import ratingFalse from '../../../../../assets/img/ratingFalse.png';
 import { Search } from './search/search';
-import { fetchIdBook } from '../../../../../store/bookslice';
+import { fetchIdBook, getCategoriesBookId } from '../../../../../store/bookslice';
 
 
 export const Books = ({ books, dispatch }) => {
@@ -26,6 +26,7 @@ export const Books = ({ books, dispatch }) => {
                 <Link
                   onClick={() => {
                     dispatch(fetchIdBook(book.id));
+                    dispatch(getCategoriesBookId(book.categories[0]))
                   }}
                   to={`/books/all/${book.id}`}
                 >

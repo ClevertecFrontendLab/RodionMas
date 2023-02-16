@@ -14,7 +14,10 @@ export const BookPage = ({ dispatch, pageBookId, isMenuOpen, setIsMenuOpen, head
   return (
     <div>
       {aboutBookError === undefined && bookPageLoad === false ? (
+        <>
         <Err />
+        <Breadcrumbs dispatch={dispatch} pageBookId={pageBookId} />
+        </>
       ) : (
         <section className={style.wrapper}>
           <div className={style.navBook}>
