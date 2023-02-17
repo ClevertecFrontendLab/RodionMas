@@ -1,0 +1,125 @@
+.wrapper {
+  margin-top: 62px;
+}
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #363636;
+  margin: 0;
+}
+.count {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #a7a7a7;
+}
+.person {
+  display: flex;
+  align-items: center;
+}
+.name {
+  margin-left: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #727272;
+}
+.date {
+  margin-left: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #727272;
+}
+.star {
+  margin-top: 16px;
+}
+.comment {
+  margin-top: 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #363636;
+  max-width: 730px;
+}
+.personBox + .personBox {
+  margin-top: 42px;
+}
+.btn {
+  background: linear-gradient(233.73deg, #f83600 -16.08%, #f9d423 327.37%);
+  border-radius: 30px;
+  padding: 14px 100px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  border: none;
+  cursor: pointer;
+  margin-top: 42px;
+}
+.btn:active {
+  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+}
+.avatarTextBlock {
+  display: flex;
+  align-items: center;
+}
+.titleBox {
+  display: flex;
+  align-items: center;
+  width: 350px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 16px;
+}
+.arrow {
+  transition: 0.3s;
+}
+.arrowRotate {
+  transform: rotate(180deg);
+  transition: 0.3s;
+}
+.arrowBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 29px;
+}
+.hide {
+  display: none;
+}
+.ratingBlock{
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 168px;
+}
+@media (max-width: 1110px) {
+  .btn {
+    width: 640px;
+  }
+}
+@media (max-width: 767px) {
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .avatarTextBlock {
+    flex-direction: column;
+  }
+  .name,
+  .date {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .btn {
+    width: 288px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 11px 87px;
+  }
+}

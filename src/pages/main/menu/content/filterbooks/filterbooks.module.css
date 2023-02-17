@@ -1,0 +1,322 @@
+.books {
+    width: 100%;
+    align-items: center;
+  }
+  .gridBook {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 21px;
+    grid-row-gap: 32px;
+  }
+  .aboutBookLink {
+    padding: 8px 8px 16px 8px;
+    border-radius: 10px;
+    width: 190px;
+    height: 470px;
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
+      0px 1px 5px rgba(191, 196, 201, 0.24);
+  }
+  
+  .raiting {
+    margin-top: 18px;
+    margin-bottom: 19px;
+    height: 24px;
+    width: 144px;
+  }
+  .raitingImg {
+    margin: 18px 0px 19px 0px;
+    width: 144px;
+    height: 24px;
+  }
+  .nameBookBlock {
+    width: 174px;
+    height: 54px;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .nameBook {
+    overflow: hidden;
+    width: 174px;
+    height: 54px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #363636;
+    text-overflow: ellipsis;
+  }
+  .authorBook {
+    width: 174px;
+    height: 36px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    overflow: hidden;
+  }
+  .reservationBtn {
+    margin-top: 8px;
+    width: 166px;
+    height: 40px;
+    position: relative;
+    bottom: 0;
+    background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 11px 23px;
+  }
+  .gridEngaged {
+    margin-top: 8px;
+    width: 166px;
+    height: 40px;
+    background: #f9f9fa;
+    border-radius: 20px;
+    border: 1px solid #bfc4c9;
+    cursor: pointer;
+    color: #a7a7a7;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 11px 23px;
+  }
+  /* list book */
+  .listBook {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 32px;
+  }
+  .aboutListBookLink {
+    padding: 24px 24px 24px 16px;
+    border-radius: 10px;
+    width: 825px;
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
+      0px 1px 5px rgba(191, 196, 201, 0.24);
+    display: flex;
+  }
+  .listBookImg {
+    width: 120px;
+    height: 170px;
+  }
+  .listBookName {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+    color: #363636;
+    width: 649px;
+    overflow: hidden;
+  }
+  .raitingReservationBtn {
+    margin-top: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+  .listDescription {
+    margin-left: 16px;
+    position: relative;
+  }
+  .listAuthor {
+    margin-top: 8px;
+  }
+  .listRaitingImgMobile {
+    display: none;
+  }
+  .listReservationBtn {
+    width: 174px;
+    height: 40px;
+    background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 11px 23px;
+  }
+  .aboutListBookLink + .aboutListBookLink {
+    margin-top: 16px;
+  }
+  .engaged {
+    width: 174px;
+    height: 40px;
+    background: #f9f9fa;
+    border-radius: 20px;
+    border: 1px solid #bfc4c9;
+    cursor: pointer;
+    color: #a7a7a7;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 11px 23px;
+  }
+  .defaultReservation,
+  .gridDefaultReservation {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #bfc4c9;
+    cursor: pointer;
+    color: #a7a7a7;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 11px 23px;
+  }
+  .gridDefaultReservation {
+    margin-top: 8px;
+  }
+  .defaultReservation {
+    width: 174px;
+    height: 40px;
+  }
+  .listReservationBtn:active,
+  .reservationBtn:active {
+    background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+    box-shadow: 0px 3px 4px rgba(222, 125, 11, 0.2), 0px 1px 10px rgba(249, 89, 8, 0.2);
+  }
+  .bookMobile {
+    width: 174px;
+    height: 242px;
+  }
+  .ratingBlock {
+    display: flex;
+    margin-top: 18px;
+    margin-bottom: 19px;
+  }
+  @media (max-width: 1110px) {
+    .gridBook {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      grid-column-gap: 35px;
+      grid-row-gap: 40px;
+    }
+    .aboutListBookLink {
+      width: 640px;
+    }
+    .listDescription {
+      width: 464px;
+    }
+    .listBookName {
+      width: 464px;
+      margin-bottom: 8px;
+    }
+    .raitingReservationBtn {
+      margin-top: 16px;
+    }
+  }
+  @media (max-width: 767px) {
+    .listBookName {
+      min-height: 0px;
+    }
+    .books {
+      padding-left: 0px;
+    }
+    .listBook {
+      display: block;
+    }
+    .gridBook {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      grid-column-gap: 35px;
+      grid-row-gap: 40px;
+    }
+    .aboutBookLink {
+      padding: 8px 16px 16px 16px;
+      border-radius: 10px;
+      width: 288px;
+      height: 470px;
+      box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
+        0px 1px 5px rgba(191, 196, 201, 0.24);
+    }
+    .bookMobile {
+      margin: 0 auto;
+    }
+    .raitingImg {
+      margin: 16px 0px 16px 0px;
+    }
+    .nameBook {
+      width: 256px;
+    }
+    .authorBook {
+      width: 256px;
+    }
+    .reservationBtn {
+      width: 256px;
+      margin: 14px auto;
+    }
+    .aboutListBookLink {
+      max-width: 288px;
+      padding: 16px 8px;
+    }
+    .listBookName {
+      width: 186px;
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 0;
+    }
+    .raitingReservationBtn {
+      flex-direction: column;
+      margin-top: 3px;
+      align-items: flex-start;
+    }
+    .listBookImg {
+      min-width: 70px;
+      max-height: 100px;
+    }
+    .listAuthor {
+      width: 186px;
+      max-height: 54px;
+      margin-top: 3px;
+      font-size: 12px;
+    }
+    .listLink {
+      min-width: 70px;
+      max-height: 100px;
+    }
+  
+    .listRaitingImg {
+      display: none;
+    }
+    .listRaitingImgMobile {
+      display: block;
+    }
+    .listReservationBtn,
+    .defaultReservation,
+    .engaged {
+      margin-top: 16px;
+    }
+    .raitingReservationBtn {
+      position: relative;
+    }
+    .gridDefaultReservation,
+    .gridEngaged {
+      width: 256px;
+    }
+  }
+  
