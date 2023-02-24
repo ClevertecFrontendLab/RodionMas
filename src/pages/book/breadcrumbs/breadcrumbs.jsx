@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchBooks, filterBook } from '../../../store/bookslice';
@@ -9,7 +8,6 @@ export const Breadcrumbs = ({ setActive, pageBookId, dispatch }) => {
   const category = useSelector((state) => state.book.categories);
   const paramsBreadCrumb = useParams();
   const breadCrumbsCategory = category.map((el) => (el.path === paramsBreadCrumb.category ? el.name : ''));
-  const [linkFilter, setLinkFilter] = useState('');
   const arrForLink = category.map((el) => el.path === paramsBreadCrumb.category && el.name);
   let linkFilterr = [...arrForLink].filter((el) => el !== false);
   
@@ -43,8 +41,6 @@ export const Breadcrumbs = ({ setActive, pageBookId, dispatch }) => {
         <div className={style.bg}>
           <div className={style.breadLinkBox}>
             <Link to='/' onClick={() => dispatch(filterBook(pageBookId.categories[0]))} className={style.link}>
-              {/* {categoriesBookId} */}
-              {/* Бизнес книги */}
               Все книги
             </Link>
             <span className={style.slash}>

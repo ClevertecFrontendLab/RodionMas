@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -17,7 +17,6 @@ export const AboutBook = ({ pageBookId }) => {
   const [size, setSize] = useState([window.innerWidth]);
   const useWindowSize = () => size;
   const [width] = useWindowSize();
-  // console.log(pageBookId);
   return (
     <div>
       {pageBookId !== null && (
@@ -33,7 +32,6 @@ export const AboutBook = ({ pageBookId }) => {
                   }}
                   spaceBetween={10}
                   navigation={true}
-                  // thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
                   thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                   modules={[FreeMode, Navigation, Thumbs, Pagination]}
                   className='mySwiper2'
@@ -43,7 +41,7 @@ export const AboutBook = ({ pageBookId }) => {
                       <img src={emptyImg} alt='book' />
                     </div>
                   ) : (
-                    pageBookId.images.map((image, index) => (
+                    pageBookId.images.map((image) => (
                       <SwiperSlide key={Math.random()}>
                         <img src={`https://strapi.cleverland.by${image.url}`} alt='book' />
                       </SwiperSlide>
@@ -59,7 +57,6 @@ export const AboutBook = ({ pageBookId }) => {
                   }}
                   spaceBetween={10}
                   navigation={true}
-                  // thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
                   modules={[FreeMode, Navigation, Thumbs, Pagination]}
                   className='mySwiper2'
                 >
@@ -92,7 +89,7 @@ export const AboutBook = ({ pageBookId }) => {
                     <img src={emptyImg} alt='book' />
                   </div>
                 ) : (
-                  pageBookId.images.map((image, index) => (
+                  pageBookId.images.map((image) => (
                     <SwiperSlide data-test-id='slide-mini' key={Math.random()}>
                       {pageBookId.images.length <= 1 ? (
                         false

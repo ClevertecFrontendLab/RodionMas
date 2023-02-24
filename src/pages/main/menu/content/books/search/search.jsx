@@ -7,30 +7,17 @@ import searchImg from '../../../../../../assets/img/Icon_Action.png';
 import X from '../../../../../../assets/img/books/X.png';
 import { sortBook } from '../../../../../../store/bookslice';
 
-export const Search = ({setFilter, filteredBooks, setValue, value, dispatch, books, activeGrid, setActiveGrid }) => {
+export const Search = ({setFilter, setValue, value, dispatch, books, activeGrid, setActiveGrid }) => {
   const [inpSearch, setInpSearch] = useState(false);
   const loadingSearch = useSelector((state) => state.book.loading);
   const errSearch = useSelector((state) => state.book.error);
   const [sortBooks, setSortBooks] = useState(true);
-  const orangeSearchRef = useRef(null)
   const [openImg, setOpenImg] = useState(false)
-  const closeImg = () => {
-    setOpenImg(false)
-  }
+
   useEffect(() => {
     dispatch(sortBook(sortBooks));
-    if(!orangeSearchRef) return
-    const imgHandleClick = e => {
-      if(!orangeSearchRef.current) return
-      if(!orangeSearchRef.current.contains(e.target)) {
-        closeImg()
-      }
-    }
-    document.addEventListener('click', imgHandleClick)
-    return () => {
-      document.removeEventListener('click', imgHandleClick)
-    }
-  }, [sortBooks, value, closeImg])
+
+  }, [sortBooks, value, books])
   return (
     <section className={style.wrapper}>
       {!loadingSearch && errSearch !== undefined ? (
@@ -54,7 +41,6 @@ export const Search = ({setFilter, filteredBooks, setValue, value, dispatch, boo
             <div className={style.orangeBlock}>
               <img  className={openImg ? style.orangeSearch : style.hide} src={searhOrange} alt="search-image" />
             <input
-              ref={orangeSearchRef}
               data-test-id='input-search'
               placeholder='Поиск книги или автора…'
               className={!inpSearch ? style.search : style.showSearch}

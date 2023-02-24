@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import warning from '../../assets/img/err/WarningCircle.png';
 import close from '../../assets/img/err/Icon_Action.png';
-import { closeErr } from '../../store/bookslice';
 import style from './err.module.css';
 
 export const Err = () => {

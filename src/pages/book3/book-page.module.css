@@ -1,8 +1,0 @@
-.navBook{
-    display: none;
-}
-@media (max-width: 1110px) {
-    .navBook{
-        display: block;
-    }
-}

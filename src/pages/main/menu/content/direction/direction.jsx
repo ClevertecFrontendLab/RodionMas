@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './direction.module.css';
 
 export const Direction = () => (

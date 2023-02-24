@@ -18,10 +18,6 @@ export const Sidebar = ({
 }) => {
  
   const [activeLink, setActiveLink] = useState(0);
-  // const [sizeBar, setSize] = useState([window.innerWidth]);
-  // const useWindowSize = () => sizeBar;
-  // const [widthBar] = useWindowSize();
-  // const [copyBooks, setCopyBooks] = useState(books);
  
   // ЗАкрыть меню навигации при клике вне эелемента
   const menuRef = useRef(null);
@@ -93,13 +89,12 @@ export const Sidebar = ({
     return () => {
       document.removeEventListener('click', bodyClick, true);
     };
-  }, [headerRef, setIsMenuOpen, menuRef,]);
+  }, [headerRef, setIsMenuOpen, menuRef]);
 
   //--
   // Повернуть стрелку, свернуть содержимое всех книг
   const [rotateArrow, setRotateArrow] = useState(true);
   // --
-  // console.log(errBooksId)
   return (
     <nav data-test-id='burger-navigation' ref={menuRef} className={!isMenuOpen ? style.wrapper : style.navMenuActive}>
       <button
@@ -118,7 +113,7 @@ export const Sidebar = ({
         >
           Витрина книг
         </Link>
-        {errAllBooks === '' && errBooksId === null ? (
+        {errAllBooks === '' && errBooksId === '' || errAllBooks === '' && errBooksId === null ? (
           <img
             data-test-id='burger-navigation'
             className={rotateArrow ? style.arrow : style.arrowDown}
@@ -130,10 +125,7 @@ export const Sidebar = ({
         )}
       </button>
       <ul className={style.list}>
-        {
-        // errAllBooks === '' && !errBooksId
-        //   ? 
-          categories.map((book, i) => (
+        {categories.map((book, i) => (
             <div key={book.id} className={rotateArrow ? style.liBlock : style.hide}>
               <li data-test-id={`burger-${book.path !== 'all' ? book.path : 'books'}`} className={rotateArrow ? style.item : style.hide}>
                 <Link
@@ -170,8 +162,6 @@ export const Sidebar = ({
                   )}
               </div>
             ))
-            
-          // : ''
           }
       </ul>
       <button

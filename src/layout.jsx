@@ -1,12 +1,12 @@
 /* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from './pages/main/header/header';
 import { MainPage } from './pages/main';
 import { Footer } from './pages/main/footer/footer';
 import { BookPage } from './pages/book';
-import { fetchBooks, fetchCategories, fetchIdBook, filterBook, sortBook } from './store/bookslice';
+import { fetchBooks, fetchCategories, sortBook, } from './store/bookslice';
 import { Loading } from './pages/loading/loading';
 import { Err } from './pages/err/err';
 
@@ -33,13 +33,9 @@ export const Layout = () => {
     return book.title.toLowerCase().includes(value.toLowerCase());
   });
   //Поиск книги input
- 
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchBooks());
-    // if (mainPageLocation.pathname === '/') {
-    //   dispatch(fetchIdBook(2));
-    // }
   }, [dispatch, mainPageLocation.pathname]);
 
   return (

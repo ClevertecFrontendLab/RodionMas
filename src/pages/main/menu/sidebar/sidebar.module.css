@@ -3,11 +3,6 @@
   padding: 0;
   width: 275px;
 }
-/* .navMenuActive{
-  position: absolute;
-  transform: translateY(-250%);
-  transition: 1.5s;
-} */
 .liBlock{
   display: flex;
   align-items: center;
@@ -106,7 +101,6 @@
   font-size: 16px;
   color: #363636;
   line-height: 24px;
-  /* margin-left: 24px; */
 }
 .link:hover {
   color: #ff5253;
@@ -164,7 +158,6 @@
     position: absolute;
     width: 502px;
     background-color: #f9f9fa;
-    /* padding: 32px; */
     padding: 32px 32px 32px 64px;
     box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
       0px 1px 5px rgba(191, 196, 201, 0.24);
