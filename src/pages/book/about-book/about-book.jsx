@@ -9,12 +9,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 // import required modules
 import { FreeMode, Navigation, Thumbs, Pagination } from 'swiper';
+import emptyImg from '../../../assets/img/books/hideBookBig.jpg';
 import style from './about-book.module.css';
 
 export const AboutBook = ({ pageBookId }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [size, setSize] = useState([window.innerWidth]);
-  const useWindowSize = () => (size);
+  const useWindowSize = () => size;
   const [width] = useWindowSize();
   // console.log(pageBookId);
   return (
@@ -37,11 +38,17 @@ export const AboutBook = ({ pageBookId }) => {
                   modules={[FreeMode, Navigation, Thumbs, Pagination]}
                   className='mySwiper2'
                 >
-                  {pageBookId.images.map((image, index) => (
-                    <SwiperSlide key={Math.random()}>
-                      <img src={`https://strapi.cleverland.by${image.url}`} alt='book' />
-                    </SwiperSlide>
-                  ))}
+                  {pageBookId.images === null ? (
+                    <div>
+                      <img src={emptyImg} alt='book' />
+                    </div>
+                  ) : (
+                    pageBookId.images.map((image, index) => (
+                      <SwiperSlide key={Math.random()}>
+                        <img src={`https://strapi.cleverland.by${image.url}`} alt='book' />
+                      </SwiperSlide>
+                    ))
+                  )}
                 </Swiper>
               ) : (
                 <Swiper
@@ -56,11 +63,17 @@ export const AboutBook = ({ pageBookId }) => {
                   modules={[FreeMode, Navigation, Thumbs, Pagination]}
                   className='mySwiper2'
                 >
-                  {pageBookId.images.map((image, index) => (
-                    <SwiperSlide key={Math.random()}>
-                      <img src={`https://strapi.cleverland.by${image.url}`} alt='book' />
-                    </SwiperSlide>
-                  ))}
+                  {pageBookId.images === null ? (
+                    <div>
+                      <img src={emptyImg} alt='book' />
+                    </div>
+                  ) : (
+                    pageBookId.images.map((image, index) => (
+                      <SwiperSlide key={Math.random()}>
+                        <img src={`https://strapi.cleverland.by${image.url}`} alt='book' />
+                      </SwiperSlide>
+                    ))
+                  )}
                 </Swiper>
               )}
 
@@ -74,23 +87,29 @@ export const AboutBook = ({ pageBookId }) => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className='mySwiper'
               >
-                {pageBookId.images.map((image, index) => (
-                  <SwiperSlide data-test-id='slide-mini' key={Math.random()}>
-                    {pageBookId.images.length <= 1 ? (
-                      false
-                    ) : (
-                      <img
-                        className={style.bookSwiperImg}
-                        src={`https://strapi.cleverland.by${image.url}`}
-                        alt='book'
-                      />
-                    )}
-                  </SwiperSlide>
-                ))}
+                {pageBookId.images === null ? (
+                  <div>
+                    <img src={emptyImg} alt='book' />
+                  </div>
+                ) : (
+                  pageBookId.images.map((image, index) => (
+                    <SwiperSlide data-test-id='slide-mini' key={Math.random()}>
+                      {pageBookId.images.length <= 1 ? (
+                        false
+                      ) : (
+                        <img
+                          className={style.bookSwiperImg}
+                          src={`https://strapi.cleverland.by${image.url}`}
+                          alt='book'
+                        />
+                      )}
+                    </SwiperSlide>
+                  ))
+                )}
               </Swiper>
             </div>
             <div className={style.aboutBookTop}>
-              <h3 className={style.bookName}>{pageBookId.title}</h3>
+              <h3 data-test-id='book-title' className={style.bookName}>{pageBookId.title}</h3>
               <h5 className={style.author}>
                 {pageBookId.authors}, {pageBookId.issueYear}
               </h5>

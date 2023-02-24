@@ -9,7 +9,7 @@
 .gridBlock {
   display: flex;
 }
-.search {
+.search{
   padding: 10px 0px 10px 40px;
   font-size: 14px;
   background: #ffffff;
@@ -23,20 +23,19 @@
   background-image: url(../../../../../../assets/img/Icon_Action.png);
   background-repeat: no-repeat;
   background-position: bottom 12px left 17px;
+  caret-color: #f83600;
 }
-/* .showSearch {
-  padding: 10px 0px 10px 40px;
-  font-size: 14px;
-  background: #ffffff;
-  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
-    0px 1px 5px rgba(191, 196, 201, 0.24);
-  border-radius: 599px;
-  border: none;
-  width: 350px;
-  height: 38px;
-  outline: none;
+.searchBlock>.search:active{
+  background-image: url(../../../../../../assets/img/searchOrange.png);
+}
+.orangeBlock{
   position: relative;
-} */
+}
+.orangeSearch{
+  position: absolute;
+  bottom: 12px;
+  left: 17px;
+}
 .searchMobile {
   display: none;
 }
@@ -58,11 +57,16 @@
   line-height: 18px;
   color: #a7a7a7;
 }
-.sortBtnMobile {
-  display: none;
-}
+
 .sortImg {
   margin-right: 8px;
+  transition: 0.3s;
+  transform: rotate(0deg);
+}
+.sortImgRotate{
+  margin-right: 8px;
+  transition: 0.3s;
+  transform: rotate(180deg);
 }
 .gridBtn,
 .listBtnActive {
@@ -129,7 +133,7 @@
 .searchBlock {
   position: relative;
 }
-.searchBtn{
+.searchBtn {
   display: none;
 }
 @media (max-width: 1110px) {
@@ -149,24 +153,25 @@
   .wrapper {
     width: 280px;
   }
-  .searchBtn{
+  .searchBtn {
     display: block;
     width: 32px;
     height: 32px;
     position: relative;
     background: transparent;
     border: none;
-    box-shadow: 0px 2px 4px rgb(191 196 201 / 20%), 0px 3px 4px rgb(191 196 201 / 18%), 0px 1px 5px rgb(191 196 201 / 24%);
+    box-shadow: 0px 2px 4px rgb(191 196 201 / 20%), 0px 3px 4px rgb(191 196 201 / 18%),
+      0px 1px 5px rgb(191 196 201 / 24%);
     border-radius: 599px;
     cursor: pointer;
   }
-  .searchImg{
+  .searchImg {
     margin: auto;
   }
   .hideMobile {
     display: none;
   }
-  .search{
+  .search {
     display: none;
   }
   .showSearch {
@@ -202,21 +207,6 @@
     position: relative;
     max-width: 288px;
   }
-  .showSearch {
-    display: block;
-    padding: 7px 0px 7px 16px;
-    font-size: 14px;
-    background: #ffffff;
-    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
-      0px 1px 5px rgba(191, 196, 201, 0.24);
-    border-radius: 599px;
-    border: none;
-    height: 32px;
-    outline: none;
-    cursor: pointer;
-    width: 288px;
-    transition: 0.3s;
-  }
   .searchImgBtn {
     position: absolute;
     background: transparent;
@@ -226,9 +216,6 @@
     cursor: pointer;
   }
   .sortBtn {
-    display: none;
-  }
-  .sortBtnMobile {
     display: block;
     margin-left: 16px;
     background: #ffffff;
@@ -244,6 +231,12 @@
     color: #a7a7a7;
     width: 32px;
     height: 32px;
+  }
+  .sortBtn span {
+    display: none;
+  }
+  .orangeSearch{
+    display: none;
   }
   .sortImg {
     margin: 0;

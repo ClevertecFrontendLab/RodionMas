@@ -12,7 +12,7 @@ root.render(
     <Provider store={store}>
       <HashRouter>
         <div className='container'>
-          <Layout index={true} />
+          <Layout index={true}/>
         </div>
       </HashRouter>
     </Provider>

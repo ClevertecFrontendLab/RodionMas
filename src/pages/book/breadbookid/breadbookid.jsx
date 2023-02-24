@@ -5,10 +5,10 @@ import style from './breadbookid.module.css';
 
 export const Breadbookid = ({ pageBookId, dispatch }) => {
   const errorIdBook = useSelector((state) => state.book.errorIdBook);
-  const categoriesBookId = useSelector((state) => state.book.categoriesBookId);
-  console.log(errorIdBook);
+  // const categoriesBookId = useSelector((state) => state.book.categoriesBookId);
+  // console.log(errorIdBook);
   // categories.map(el => el.name === pageBookId.categories[0] && path = el.path)
-  console.log(pageBookId);
+  // console.log(pageBookId);
   return (
     <section className={style.wrapper}>
       <div className={style.bg}>
