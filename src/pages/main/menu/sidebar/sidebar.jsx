@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -5,12 +6,45 @@ import arrowDown from '../../../../assets/img/Icon_Chevron.png';
 import style from './sidebar.module.css';
 import { filterBook } from '../../../../store/bookslice';
 
-
-export const Sidebar = ({ books, dispatch, isMenuOpen, setIsMenuOpen, headerRef, toggleMenuMode }) => {
-  const [active, setActive] = useState(0);
+export const Sidebar = ({
+  active,
+  setActive,
+  books,
+  dispatch,
+  isMenuOpen,
+  setIsMenuOpen,
+  headerRef,
+  toggleMenuMode,
+}) => {
+  const categories = useSelector((state) => state.book.categories);
   const [activeLink, setActiveLink] = useState(0);
+  const [countBooks, setCountBooks] = useState([]);
+
   // ЗАкрыть меню навигации при клике вне эелемента
   const menuRef = useRef(null);
+  // ЗАкрыть меню навигации при клике вне эелемента
+  const errBooksId = useSelector((state) => state.book.errorIdBook);
+  const errAllBooks = useSelector((state) => state.book.error);
+
+  useEffect(() => {
+    if (countBooks.length === 0 && books.books.length !== 0 && categories.length !== 0) {
+      const countBooksFn = () => {
+        if (books.books.length !== 0 && categories.length !== 0) {
+          books.books.map((el) => {
+            countBooks.map((element) => {
+              el.categories.map((e) => {
+                return e.indexOf(element.name) === 0 ? ++element.count : '';
+              });
+            });
+          });
+        }
+      };
+      let newData = categories.map((item) => Object.assign({}, item, { count: 0 }));
+      countBooks.length === 0 && newData.map((e) => countBooks.push(e));
+      countBooksFn();
+    }
+  });
+
   useEffect(() => {
     const bodyClick = (e) => {
       if (!menuRef.current.contains(e.target) && !headerRef.current.contains(e.target)) {
@@ -27,10 +61,6 @@ export const Sidebar = ({ books, dispatch, isMenuOpen, setIsMenuOpen, headerRef,
   // Повернуть стрелку, свернуть содержимое всех книг
   const [rotateArrow, setRotateArrow] = useState(true);
   // --
-  const errBooksId = useSelector(state => state.book.errorIdBook)
-  const errAllBooks = useSelector(state => state.book.error)
-  // console.log(errAllBooks)
-  const categories = useSelector((state) => state.book.categories);
   return (
     <nav data-test-id='burger-navigation' ref={menuRef} className={!isMenuOpen ? style.wrapper : style.navMenuActive}>
       <button
@@ -49,34 +79,65 @@ export const Sidebar = ({ books, dispatch, isMenuOpen, setIsMenuOpen, headerRef,
         >
           Витрина книг
         </Link>
-       { errAllBooks === '' && errBooksId === '' ? <img
-          data-test-id='burger-navigation'
-          className={rotateArrow ? style.arrow : style.arrowDown}
-          src={arrowDown}
-          alt='arrow'
-        /> : ''}
+        {(errAllBooks === '' && errBooksId === '') || (errAllBooks === '' && errBooksId === null) ? (
+          <img
+            data-test-id='burger-navigation'
+            className={rotateArrow ? style.arrow : style.arrowDown}
+            src={arrowDown}
+            alt='arrow'
+          />
+        ) : (
+          ''
+        )}
       </button>
       <ul className={style.list}>
-        { errAllBooks === '' && errBooksId === '' ? categories.map((book, i) => (
-          <li data-test-id='burger-books' className={rotateArrow ? style.item : style.hide} key={book.id}>
-            <Link
-              data-test-id='navigation-books'
-              onClick={() => {
-                dispatch(filterBook(book.name))
-                setActive(i);
-                setActiveLink(0);
-                setRotateArrow(false);
-                toggleMenuMode();
-                
-              }}
-              className={active === i && activeLink === 0 ? style.active : style.link}
-              to={`/books/${book.path}`}
+        {categories.map((book, i) => (
+          <div key={book.id} className={rotateArrow ? style.liBlock : style.hide}>
+            <li
+              data-test-id={`burger-${book.path !== 'all' ? book.path : 'books'}`}
+              className={rotateArrow ? style.item : style.hide}
             >
-              {book.name}
-              <span className={style.quantity}>{book.quantity}</span>
-            </Link>
-          </li>
-        )) : ''}
+              <Link
+                data-test-id={`navigation-${book.path !== 'all' ? book.path : 'books'}`}
+                onClick={() => {
+                  dispatch(filterBook(book.name));
+                  setActive(i);
+                  setActiveLink(0);
+                  toggleMenuMode();
+                }}
+                className={active === i && activeLink === 0 ? style.active : style.link}
+                to={`/books/${book.path}`}
+              >
+                {book.name}
+              </Link>
+            </li>
+            {book.name !== 'Все книги' &&
+              countBooks?.map(
+                (el) =>
+                  el.name === book.name && (
+                    <span
+                      data-test-id={`navigation-book-count-for-${book.path}`}
+                      key={Math.random()}
+                      className={style.quantityDesctop}
+                    >
+                      {el.count}
+                    </span>
+                  )
+              )}
+            {countBooks?.map(
+              (el) =>
+                el.name === book.name && (
+                  <span
+                    data-test-id={`burger-book-count-for-${book.path}`}
+                    key={Math.random()}
+                    className={style.quantity}
+                  >
+                    {el.count}
+                  </span>
+                )
+            )}
+          </div>
+        ))}
       </ul>
       <button
         onClick={() => {

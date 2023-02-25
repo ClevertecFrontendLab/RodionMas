@@ -1,8 +1,6 @@
 import style from './detailed.module.css';
 
-export const Detailed = ({ pageBookId }) => {
-  console.log();
-  return (
+export const Detailed = ({ pageBookId }) => (
     <section className={style.wrapper}>
       <h5 className={style.title}>Подробная информация</h5>
       {pageBookId !== null && (
@@ -87,4 +85,3 @@ export const Detailed = ({ pageBookId }) => {
       )}
     </section>
   );
-};

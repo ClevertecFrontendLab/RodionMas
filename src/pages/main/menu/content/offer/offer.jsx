@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './offer.module.css';
 
 export const Offer = () => (

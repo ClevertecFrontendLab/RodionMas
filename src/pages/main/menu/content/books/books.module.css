@@ -223,6 +223,7 @@
   }
   .listBookName {
     width: 464px;
+    max-height: 96px;
     margin-bottom: 8px;
   }
   .raitingReservationBtn {

@@ -11,12 +11,14 @@ const initialState = {
   error: null,
   errorIdBook: null,
   filterArr: [],
-  path: {},
+  path: '',
   categoriesBookId: '',
+  valueInput: '',
 };
 
 export const fetchBooks = createAsyncThunk('book/fetchBooks', (_, { rejectWithValue }) => {
   return axios.get(`${API_URL}/api/books`).then((response) => {
+    // console.log(response)
     try {
       if (response.statusText !== 'OK') {
         throw new Error('Server Error!');
@@ -29,7 +31,7 @@ export const fetchBooks = createAsyncThunk('book/fetchBooks', (_, { rejectWithVa
 });
 export const fetchCategories = createAsyncThunk('book/fetchCategories', (_, { rejectWithValue }) => {
   return axios.get(`${API_URL}/api/categories`).then((response) => {
-    console.log(response)
+    // console.log(response)
     try {
       if (response.statusText !== 'OK') {
         throw new Error('Server Error!');
@@ -57,30 +59,66 @@ export const bookSlice = createSlice({
   name: 'book',
   initialState,
   reducers: {
-    closeErr(state) {
-      state.error = false;
-      state.errorIdBook = false;
-    },
     filterBook(state, action) {
-      if (state.books.length === 0) {
+      if (action.payload === 'Все книги') {
         state.books.filter((el) => {
-          return el.categories[0] === action.payload && state.filterArr.push(el);
+          el.categories.map((e) => e === action.payload && state.filterArr.push(el));
         });
-      } else if(state.books.length !== 0){
-        state.filterArr = []
-        state.books.filter((el) => {
-          return el.categories[0] === action.payload && state.filterArr.push(el);
+      } else {
+        if (state.books.length === 0) {
+          state.books.filter((el) => {
+            el.categories.map((e) => e === action.payload && state.filterArr.push(el));
+          });
+        } else if (state.books.length !== 0) {
+          state.filterArr = [];
+          state.books.filter((el) => {
+            el.categories.map((e) => e === action.payload && state.filterArr.push(el));
+          });
+        }
+      }
+    },
+    getPath(state, action) {
+      state.categories.map((el) => {
+        return el.name === action.payload;
+      });
+    },
+    sortBook(state, action) {
+      if (action.payload === true) {
+        state.books.sort((a, b) => {
+          if (a.rating > b.rating) {
+            return -1;
+          }
+          return 0;
+        });
+      } else if (action.payload === false) {
+        state.books.sort((a, b) => {
+          if (a.rating < b.rating) {
+            return -1;
+          }
+          return 0;
+        });
+      }
+      if (action.payload === true && state.filterArr !== 0) {
+        state.filterArr.sort((a, b) => {
+          if (a.rating > b.rating) {
+            return -1;
+          }
+          return 0;
+        });
+      } else if (action.payload === false && state.filterArr !== 0) {
+        state.filterArr.sort((a, b) => {
+          if (a.rating < b.rating) {
+            return -1;
+          }
+          return 0;
         });
       }
     },
-    getPath(state, action){
-      // state.categories.map(el => el.name === action.payload && state.path = el.path)
+    getCategoriesBookId(state, action) {
+      state.categoriesBookId = action.payload;
+      // console.log(action.payload)
+      // console.log(state.categoriesBookId)
     },
-    getCategoriesBookId(state, action){
-      state.categoriesBookId = action.payload
-      console.log(action.payload)
-      console.log(state.categoriesBookId)
-    }
   },
   extraReducers: {
     [fetchBooks.pending]: (state) => {
@@ -90,6 +128,7 @@ export const bookSlice = createSlice({
     [fetchBooks.fulfilled]: (state, action) => {
       state.loading = false;
       state.books = action.payload;
+
       state.error = '';
     },
     [fetchBooks.rejected]: (state, action) => {
@@ -103,6 +142,7 @@ export const bookSlice = createSlice({
     [fetchCategories.fulfilled]: (state, action) => {
       state.loading = false;
       state.categories = action.payload;
+      state.categories.unshift({ name: 'Все книги', path: 'all', id: 0 });
       state.error = '';
     },
     [fetchCategories.rejected]: (state, action) => {
@@ -126,6 +166,6 @@ export const bookSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { closeErr, filterBook, getPath, getCategoriesBookId } = bookSlice.actions;
+export const { sortBook, closeErr, filterBook, getPath, getCategoriesBookId } = bookSlice.actions;
 
 export const bookReducer = bookSlice.reducer;
