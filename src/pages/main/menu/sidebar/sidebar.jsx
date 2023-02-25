@@ -16,68 +16,34 @@ export const Sidebar = ({
   headerRef,
   toggleMenuMode,
 }) => {
- 
+  const categories = useSelector((state) => state.book.categories);
   const [activeLink, setActiveLink] = useState(0);
- 
+  const [countBooks, setCountBooks] = useState([]);
+
   // ЗАкрыть меню навигации при клике вне эелемента
   const menuRef = useRef(null);
   // ЗАкрыть меню навигации при клике вне эелемента
   const errBooksId = useSelector((state) => state.book.errorIdBook);
   const errAllBooks = useSelector((state) => state.book.error);
-  const categories = useSelector((state) => state.book.categories);
-  const countBook = [
-    {
-      name: 'Бизнес',
-      count: 0,
-    },
-    {
-      name: 'Психология',
-      count: 0,
-    },
-    {
-      name: 'Родителям',
-      count: 0,
-    },
-    {
-      name: 'Нон-фикшн',
-      count: 0,
-    },
-    {
-      name: 'Художественная литература',
-      count: 0,
-    },
-    {
-      name: 'Программирование',
-      count: 0,
-    },
-    {
-      name: 'Хобби',
-      count: 0,
-    },
-    {
-      name: 'Дизайн',
-      count: 0,
-    },
-    {
-      name: 'Детские',
-      count: 0,
-    },
-    {
-      name: 'Другое',
-      count: 0,
-    },
-  ]
-  if (books && categories) {
-    books.books.map((el, i) => {
-      categories.map((element) => {
-        el.categories.map((e) => {
-          e.indexOf(element.name) === 0
-            ? countBook.map((counter) => (counter.name === element.name ? ++counter.count : ''))
-            : '';
-        });
-      });
-    });
-  }
+
+  useEffect(() => {
+    if (countBooks.length === 0 && books.books.length !== 0 && categories.length !== 0) {
+      const countBooksFn = () => {
+        if (books.books.length !== 0 && categories.length !== 0) {
+          books.books.map((el) => {
+            countBooks.map((element) => {
+              el.categories.map((e) => {
+                return e.indexOf(element.name) === 0 ? ++element.count : '';
+              });
+            });
+          });
+        }
+      };
+      let newData = categories.map((item) => Object.assign({}, item, { count: 0 }));
+      countBooks.length === 0 && newData.map((e) => countBooks.push(e));
+      countBooksFn();
+    }
+  });
 
   useEffect(() => {
     const bodyClick = (e) => {
@@ -113,7 +79,7 @@ export const Sidebar = ({
         >
           Витрина книг
         </Link>
-        {errAllBooks === '' && errBooksId === '' || errAllBooks === '' && errBooksId === null ? (
+        {(errAllBooks === '' && errBooksId === '') || (errAllBooks === '' && errBooksId === null) ? (
           <img
             data-test-id='burger-navigation'
             className={rotateArrow ? style.arrow : style.arrowDown}
@@ -126,43 +92,52 @@ export const Sidebar = ({
       </button>
       <ul className={style.list}>
         {categories.map((book, i) => (
-            <div key={book.id} className={rotateArrow ? style.liBlock : style.hide}>
-              <li data-test-id={`burger-${book.path !== 'all' ? book.path : 'books'}`} className={rotateArrow ? style.item : style.hide}>
-                <Link
-                  data-test-id={`navigation-${book.path !== 'all' ? book.path : 'books'}`}
-                  onClick={() => {
-                    dispatch(filterBook(book.name));
-                    setActive(i); 
-                    setActiveLink(0);
-                    toggleMenuMode();
-                    
-                    // setRotateArrow(false);
-                  }}
-                  className={active === i && activeLink === 0 ? style.active : style.link}
-                  to={`/books/${book.path}`}
-                >
-                  {book.name}
-                </Link>
-              </li>
-              {countBook?.map(
-                    (el) =>
-                      el.name === book.name && (
-                        <span data-test-id={`navigation-book-count-for-${book.path}`} key={Math.random()} className={style.quantityDesctop}>
-                          {el.count}
-                        </span>
-                      )
-                  )}
-                   {countBook?.map(
-                    (el) =>
-                      el.name === book.name && (
-                        <span data-test-id={`burger-book-count-for-${book.path}`} key={Math.random()} className={style.quantity}>
-                          {el.count}
-                        </span>
-                      )
-                  )}
-              </div>
-            ))
-          }
+          <div key={book.id} className={rotateArrow ? style.liBlock : style.hide}>
+            <li
+              data-test-id={`burger-${book.path !== 'all' ? book.path : 'books'}`}
+              className={rotateArrow ? style.item : style.hide}
+            >
+              <Link
+                data-test-id={`navigation-${book.path !== 'all' ? book.path : 'books'}`}
+                onClick={() => {
+                  dispatch(filterBook(book.name));
+                  setActive(i);
+                  setActiveLink(0);
+                  toggleMenuMode();
+                }}
+                className={active === i && activeLink === 0 ? style.active : style.link}
+                to={`/books/${book.path}`}
+              >
+                {book.name}
+              </Link>
+            </li>
+            {book.name !== 'Все книги' &&
+              countBooks?.map(
+                (el) =>
+                  el.name === book.name && (
+                    <span
+                      data-test-id={`navigation-book-count-for-${book.path}`}
+                      key={Math.random()}
+                      className={style.quantityDesctop}
+                    >
+                      {el.count}
+                    </span>
+                  )
+              )}
+            {countBooks?.map(
+              (el) =>
+                el.name === book.name && (
+                  <span
+                    data-test-id={`burger-book-count-for-${book.path}`}
+                    key={Math.random()}
+                    className={style.quantity}
+                  >
+                    {el.count}
+                  </span>
+                )
+            )}
+          </div>
+        ))}
       </ul>
       <button
         onClick={() => {

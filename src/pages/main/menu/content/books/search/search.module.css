@@ -9,7 +9,7 @@
 .gridBlock {
   display: flex;
 }
-.search{
+.search, .orange{
   padding: 10px 0px 10px 40px;
   font-size: 14px;
   background: #ffffff;
@@ -25,16 +25,9 @@
   background-position: bottom 12px left 17px;
   caret-color: #f83600;
 }
-.searchBlock>.search:active{
-  background-image: url(../../../../../../assets/img/searchOrange.png);
-}
-.orangeBlock{
-  position: relative;
-}
-.orangeSearch{
-  position: absolute;
-  bottom: 12px;
-  left: 17px;
+
+.orange{
+  background-image: url(../../../../../../assets/img/searchOrange.png); 
 }
 .searchMobile {
   display: none;
@@ -140,7 +133,7 @@
   .wrapper {
     width: 640px;
   }
-  .search {
+  .search, .orange {
     width: 274px;
     height: 38px;
     font-weight: 400;
@@ -171,7 +164,7 @@
   .hideMobile {
     display: none;
   }
-  .search {
+  .search, .orange {
     display: none;
   }
   .showSearch {

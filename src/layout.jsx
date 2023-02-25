@@ -1,12 +1,12 @@
 /* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from './pages/main/header/header';
 import { MainPage } from './pages/main';
 import { Footer } from './pages/main/footer/footer';
 import { BookPage } from './pages/book';
-import { fetchBooks, fetchCategories, sortBook, } from './store/bookslice';
+import { fetchBooks, fetchCategories, sortBook } from './store/bookslice';
 import { Loading } from './pages/loading/loading';
 import { Err } from './pages/err/err';
 
@@ -16,7 +16,8 @@ export const Layout = () => {
   //для активной ссылки в категориях
   const books = useSelector((state) => state.book);
   const pageBookId = useSelector((state) => state.book.bookId);
-  const category = useSelector(state => state.book.categories)
+  const category = useSelector((state) => state.book.categories);
+
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenuMode = () => {
@@ -37,7 +38,6 @@ export const Layout = () => {
     dispatch(fetchCategories());
     dispatch(fetchBooks());
   }, [dispatch, mainPageLocation.pathname]);
-
   return (
     <div>
       <Header

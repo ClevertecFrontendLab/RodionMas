@@ -62,26 +62,22 @@ export const bookSlice = createSlice({
     filterBook(state, action) {
       if (action.payload === 'Все книги') {
         state.books.filter((el) => {
-          // return el.categories[0] !== action.payload && state.filterArr.push(el);
           el.categories.map((e) => e === action.payload && state.filterArr.push(el));
         });
       } else {
         if (state.books.length === 0) {
           state.books.filter((el) => {
-            // return el.categories[0] === action.payload && state.filterArr.push(el);
             el.categories.map((e) => e === action.payload && state.filterArr.push(el));
           });
         } else if (state.books.length !== 0) {
           state.filterArr = [];
           state.books.filter((el) => {
-            // return el.categories[0] === action.payload && state.filterArr.push(el);
             el.categories.map((e) => e === action.payload && state.filterArr.push(el));
           });
         }
       }
     },
     getPath(state, action) {
-      // state.categories.map(el => el.name === action.payload && state.path = el.path)
       state.categories.map((el) => {
         return el.name === action.payload;
       });

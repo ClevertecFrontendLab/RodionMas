@@ -1,12 +1,8 @@
 /* eslint-disable */
-import { useCallback, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useCallback,  useState } from 'react';
+import {  useParams } from 'react-router-dom';
 import style from './filterbooks.module.css';
-import catImg from '../../../../../assets/img/books/cat.jpg';
-import ratingTrue from '../../../../../assets/img/rating.png';
-import ratingFalse from '../../../../../assets/img/ratingFalse.png';
 import { Search } from '../books/search/search';
-import { fetchIdBook, getCategoriesBookId } from '../../../../../store/bookslice';
 import { ZerobookCategory } from './zerobook/zerobook';
 import { HightLight } from './hightlight/hightlight';
 import { ZerobookInput } from './zerobookinput/zerobookinput';
@@ -25,9 +21,6 @@ export const Filterbooks = ({ filteredBooksAll, setValue, filteredBooks, value, 
     },
     [value]
   );
-    useEffect(() => {
-
-    }, [])
   return (
     <section className={style.books}>
       <Search

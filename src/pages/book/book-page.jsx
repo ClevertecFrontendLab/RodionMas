@@ -14,17 +14,17 @@ import { fetchIdBook } from '../../store/bookslice';
 
 export const BookPage = ({ books, setActive, dispatch, pageBookId, isMenuOpen, setIsMenuOpen, headerRef }) => {
   const aboutBookError = useSelector((state) => state.book.errorIdBook);
-  const bookPageLoad =  useSelector(state => state.book.loading)
-  const paramsIdBook = useParams()
+  const bookPageLoad = useSelector((state) => state.book.loading);
+  const paramsIdBook = useParams();
   useEffect(() => {
     dispatch(fetchIdBook(paramsIdBook.id));
-  }, [dispatch, paramsIdBook.id])
+  }, [dispatch, paramsIdBook.id]);
   return (
     <div>
       {aboutBookError === undefined && bookPageLoad === false ? (
         <>
-        <Err />
-        {bookPageLoad === false && <Breadbookid dispatch={dispatch} pageBookId={pageBookId} />}
+          <Err />
+          {bookPageLoad === false && <Breadbookid dispatch={dispatch} pageBookId={pageBookId} />}
         </>
       ) : (
         <section className={style.wrapper}>

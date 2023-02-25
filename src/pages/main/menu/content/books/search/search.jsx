@@ -20,7 +20,7 @@ export const Search = ({setFilter, setValue, value, dispatch, books, activeGrid,
   }, [sortBooks, value, books])
   return (
     <section className={style.wrapper}>
-      {!loadingSearch && errSearch !== undefined ? (
+      {errSearch !== undefined ? (
         <div className={style.searchMenu}>
           <div className={style.searchBlock}>
             <button
@@ -43,9 +43,8 @@ export const Search = ({setFilter, setValue, value, dispatch, books, activeGrid,
             <input
               data-test-id='input-search'
               placeholder='Поиск книги или автора…'
-              className={!inpSearch ? style.search : style.showSearch}
+              className={!inpSearch && value === ''  ? style.search : !inpSearch && value !== '' ? style.orange : style.showSearch}
               type='text'
-              onClick={() => setOpenImg(true)}
               onChange={(e) => {
                 value = e.target.value
                 setFilter(e.target.value)
